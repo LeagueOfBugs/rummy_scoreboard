@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/player_provider.dart';
-import 'package:flutter_application_1/widgets/add_player.dart';
-import 'package:flutter_application_1/widgets/leaderboard.dart';
+import 'package:flutter_application_1/widgets/card/add_player.dart';
+import 'package:flutter_application_1/widgets/card/leaderboard.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,8 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.grey.shade400,
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 10, 1, 39)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -36,48 +39,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     print('in main');
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 300, child: Leaderboard()),
-            const AddPlayer(),
-            TextButton(
-                onPressed: () {
-                  Provider.of<PlayerProvider>(context, listen: false)
-                      .clearPlayers();
-                },
-                child: const Text('clear players'))
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: Column(
+        children: <Widget>[
+          const Leaderboard(),
+          const AddPlayer(),
+          TextButton(
+              onPressed: () {
+                Provider.of<PlayerProvider>(context, listen: false)
+                    .clearPlayers();
+              },
+              child: const Text('clear players'))
+        ],
       ),
     );
   }

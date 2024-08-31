@@ -11,6 +11,12 @@ class PlayerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addPlayers(List<String> names) {
+    for (var name in names) {
+      addPlayer(name);
+    }
+  }
+
   void clearPlayers() {
     players.clear();
     notifyListeners();
