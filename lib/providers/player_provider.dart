@@ -15,6 +15,7 @@ class PlayerProvider extends ChangeNotifier {
     for (var name in names) {
       addPlayer(name);
     }
+    notifyListeners();
   }
 
   void clearPlayers() {

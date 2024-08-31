@@ -13,7 +13,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,8 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade400,
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 10, 1, 39)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 10, 1, 39)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -49,8 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          const Leaderboard(),
-          const AddPlayer(),
+          // Conditionally add a widget using an if statement
+          (Provider.of<PlayerProvider>(context).players.isEmpty)
+              ? const AddPlayer()
+              : const Leaderboard(),
           TextButton(
               onPressed: () {
                 Provider.of<PlayerProvider>(context, listen: false)

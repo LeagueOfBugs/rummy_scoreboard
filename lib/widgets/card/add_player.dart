@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/providers/player_provider.dart';
 import 'package:flutter_application_1/widgets/card/game_card.dart';
+import 'package:provider/provider.dart';
 
 class AddPlayer extends StatefulWidget {
   const AddPlayer({super.key});
@@ -29,6 +31,15 @@ class _AddPlayerState extends State<AddPlayer> {
     setState(() => _controllers.add(TextEditingController()));
   }
 
+  void startGame() {
+    for (var controller in _controllers) {
+      if (controller.text.isNotEmpty) {
+        Provider.of<PlayerProvider>(context, listen: false)
+            .addPlayer(controller.text);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GameCard(
@@ -47,9 +58,21 @@ class _AddPlayerState extends State<AddPlayer> {
               );
             }),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: addPlayerInput,
-              child: const Text('Add Player'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: addPlayerInput,
+                  child: const Text('Add Player'),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: startGame,
+                  child: const Text('Start Game'),
+                ),
+              ],
             ),
           ],
         ),

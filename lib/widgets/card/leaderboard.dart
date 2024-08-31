@@ -15,18 +15,14 @@ class Leaderboard extends StatelessWidget {
           return const Text('No players yet');
         }
         print('in leaderboard');
-        // Use a ListView to handle potential overflow
-        return ListView(
-          children: players.map((player) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Text(
-                player.name,
-                style: const TextStyle(fontSize: 18), // Customize text style
-              ),
+        return Column(children: [
+          ...players.map((player) {
+            return Text(
+              player.name,
+              style: const TextStyle(fontSize: 18),
             );
-          }).toList(),
-        );
+          }),
+        ]);
       },
     );
   }
