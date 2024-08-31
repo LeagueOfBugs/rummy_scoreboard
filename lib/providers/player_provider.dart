@@ -11,5 +11,10 @@ class PlayerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearPlayers() {
+    players.clear();
+    notifyListeners();
+  }
+
   List<Player> get getPlayers => players;
 }

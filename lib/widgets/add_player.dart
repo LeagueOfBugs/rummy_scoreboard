@@ -36,7 +36,9 @@ class _AddPlayerState extends State<AddPlayer> {
               ),
             ),
             ElevatedButton(
-                onPressed: () => _addPlayer(), child: const Text('Add')),
+              onPressed: () => _addPlayer(),
+              child: const Text('Add'),
+            ),
           ],
         ),
       ],

@@ -63,8 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const Leaderboard(),
+            const SizedBox(height: 300, child: Leaderboard()),
             const AddPlayer(),
+            TextButton(
+                onPressed: () {
+                  Provider.of<PlayerProvider>(context, listen: false)
+                      .clearPlayers();
+                },
+                child: const Text('clear players'))
           ],
         ),
       ),
