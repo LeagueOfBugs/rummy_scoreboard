@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/card/history.dart';
 import 'package:flutter_application_1/widgets/card/leaderboard.dart';
 import 'package:flutter_application_1/widgets/render_player_cards.dart';
 
@@ -13,11 +14,7 @@ class StartGame extends StatelessWidget {
           flex: 1,
           child: Container(
             color: Colors.red,
-            child: const Column(
-              children: [
-                Text('hi'),
-              ],
-            ),
+            child: History(),
           ),
         ),
         Expanded(
@@ -40,7 +37,7 @@ class StartGame extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
