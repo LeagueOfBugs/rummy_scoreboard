@@ -8,21 +8,25 @@ class Leaderboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('in leaderboard');
     return Consumer<PlayerProvider>(
       builder: (context, playerProvider, child) {
-        List<Player> players = playerProvider.players;
-        if (players.isEmpty) {
-          return const Text('No players yet');
-        }
-        print('in leaderboard');
-        return Column(children: [
-          ...players.map((player) {
-            return Text(
-              player.name,
-              style: const TextStyle(fontSize: 18),
-            );
-          }),
-        ]);
+        List<Player> players = playerProvider.getPlayers;
+        players.sort((a, b) => b.score.compareTo(a.score));
+        return SizedBox(
+          width: 500,
+          child: ListView.builder(
+            itemCount: players.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(players[index].name),
+                trailing: Text(
+                  players[index].score.toString(),
+                ),
+              );
+            },
+          ),
+        );
       },
     );
   }

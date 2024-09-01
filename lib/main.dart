@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/player_provider.dart';
 import 'package:flutter_application_1/widgets/card/add_player.dart';
-import 'package:flutter_application_1/widgets/card/leaderboard.dart';
+import 'package:flutter_application_1/widgets/start_game.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -48,10 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          // Conditionally add a widget using an if statement
           (Provider.of<PlayerProvider>(context).players.isEmpty)
               ? const AddPlayer()
-              : const Leaderboard(),
+              : const Expanded(child: StartGame()),
           TextButton(
               onPressed: () {
                 Provider.of<PlayerProvider>(context, listen: false)
