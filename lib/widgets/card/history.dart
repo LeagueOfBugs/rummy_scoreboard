@@ -9,18 +9,19 @@ class History extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PlayerProvider>(
       builder: (context, playerProvider, child) {
-        // Filter out players with scores greater than 0
-        final updatedPlayers =
-            playerProvider.players.where((player) => player.score > 0).toList();
-
-        if (updatedPlayers.isEmpty) {
-          return const Text('No scores yet');
-        }
-
-        return Column(
-          children: updatedPlayers.map((player) {
-            return Text('${player.name} : ${player.score}');
-          }).toList(),
+        return ListView.builder(
+          itemCount: playerProvider.log.length,
+          itemBuilder: (context, index) {
+            return Row(
+              children: [
+                Text(playerProvider.log[index].name.toString()),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(playerProvider.log[index].score.toString()),
+              ],
+            );
+          },
         );
       },
     );

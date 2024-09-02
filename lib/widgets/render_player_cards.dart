@@ -13,7 +13,7 @@ class RenderPlayerCards extends StatelessWidget {
       builder: (context, playerProvider, child) {
         return Row(
           children: [
-            ...playerProvider.players.map(
+            ...playerProvider.getPlayers.map(
               (player) {
                 return PlayerCard(player: player);
               },

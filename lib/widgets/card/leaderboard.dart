@@ -11,7 +11,8 @@ class Leaderboard extends StatelessWidget {
     print('in leaderboard');
     return Consumer<PlayerProvider>(
       builder: (context, playerProvider, child) {
-        List<Player> players = playerProvider.getPlayers;
+        List<Player> players = List.from(playerProvider.getPlayers);
+
         players.sort((a, b) => b.score.compareTo(a.score));
         return SizedBox(
           width: 500,
@@ -19,6 +20,7 @@ class Leaderboard extends StatelessWidget {
             itemCount: players.length,
             itemBuilder: (context, index) {
               return ListTile(
+                leading: Text(players[index].wins.toString()),
                 title: Text(players[index].name),
                 trailing: Text(
                   players[index].score.toString(),

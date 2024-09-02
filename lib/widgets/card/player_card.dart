@@ -30,6 +30,35 @@ class _PlayerCardState extends State<PlayerCard> {
     }
   }
 
+  void _addToInput(int valueToAdd) {
+    // Get the current text from the controller
+    String currentText = _controller.text;
+
+    // Try to parse the current text as an integer
+    int? currentValue = int.tryParse(currentText.replaceAll(',', ''));
+
+    if (currentValue != null) {
+      // If parsing is successful, add the value
+      int newValue = currentValue + valueToAdd;
+
+      // Update the controller with the new value
+      _controller.value = TextEditingValue(
+        text: newValue.toString(),
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: newValue.toString().length),
+        ),
+      );
+    } else {
+      // If parsing fails, just add the value as a new entry
+      _controller.value = TextEditingValue(
+        text: valueToAdd.toString(),
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: valueToAdd.toString().length),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GameCard(
@@ -66,8 +95,21 @@ class _PlayerCardState extends State<PlayerCard> {
                     ),
                   ),
                   TextButton(
-                      onPressed: _updatePlayerScore,
-                      child: const Text('Update Button'))
+                    onPressed: _updatePlayerScore,
+                    child: const Text('Update Button'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _addToInput(50);
+                    },
+                    child: const Text("cut"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _addToInput(100);
+                    },
+                    child: const Text("RUMMY!"),
+                  ),
                 ],
               ),
             ),

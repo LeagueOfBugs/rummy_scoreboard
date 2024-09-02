@@ -38,6 +38,7 @@ class _AddPlayerState extends State<AddPlayer> {
             .addPlayer(controller.text);
       }
     }
+    Provider.of<PlayerProvider>(context, listen: false).startGame();
   }
 
   @override
