@@ -12,6 +12,7 @@ class RenderPlayerCards extends StatelessWidget {
     return Consumer<PlayerProvider>(
       builder: (context, playerProvider, child) {
         return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ...playerProvider.getPlayers.map(
               (player) {

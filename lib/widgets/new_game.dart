@@ -7,13 +7,26 @@ class NewGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: TextButton(
-        onPressed: () {
-          Provider.of<PlayerProvider>(context, listen: false).newGame();
-        },
-        child: const Text('new game'),
-      ),
+    return Consumer<PlayerProvider>(
+      builder: (context, playerProvider, child) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${playerProvider.getWinner.name} wins!',
+                style: const TextStyle(fontSize: 30),
+              ),
+              TextButton(
+                onPressed: () {
+                  playerProvider.newGame();
+                },
+                child: const Text('new game'),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

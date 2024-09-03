@@ -64,52 +64,66 @@ class _PlayerCardState extends State<PlayerCard> {
     return GameCard(
       gameCardChildren: Column(
         children: [
-          Text(widget.player.name),
+          Text(
+            widget.player.name,
+            style: const TextStyle(fontSize: 22),
+          ),
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(color: Colors.orange.shade300),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Center(
                     child: SizedBox(
                       width: 150.0,
-                      height: 50.0,
-                      child: TextField(
-                        controller: _controller,
-                        inputFormatters: [
-                          NumberTextInputFormatter(
-                            integerDigits: 10,
-                            maxValue: '1000',
-                            groupDigits: 3,
-                            groupSeparator: ',',
-                            allowNegative: true,
-                            insertDecimalDigits: false,
+                      height: 100.0,
+                      child: Column(
+                        children: [
+                          TextField(
+                            controller: _controller,
+                            inputFormatters: [
+                              NumberTextInputFormatter(
+                                integerDigits: 10,
+                                maxValue: '1000',
+                                allowNegative: true,
+                                insertDecimalDigits: false,
+                              ),
+                            ],
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Enter Score',
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: _updatePlayerScore,
+                            child: const Text('Update Score'),
                           ),
                         ],
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Enter number',
-                        ),
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: _updatePlayerScore,
-                    child: const Text('Update Button'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _addToInput(50);
-                    },
-                    child: const Text("cut"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _addToInput(100);
-                    },
-                    child: const Text("RUMMY!"),
-                  ),
+                  SizedBox(
+                    height: 80,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            _addToInput(50);
+                          },
+                          child: const Text("cut"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            _addToInput(100);
+                          },
+                          child: const Text("RUMMY!"),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

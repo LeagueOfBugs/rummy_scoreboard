@@ -7,9 +7,17 @@ class GameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      shadowColor: Color.fromARGB(255, 2, 153, 224),
+      elevation: 10,
       child: Container(
-          constraints: const BoxConstraints(maxWidth: 200, minWidth: 200),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          constraints: const BoxConstraints(
+            maxWidth: 200,
+            minWidth: 200,
+          ),
           child: gameCardChildren),
     );
   }

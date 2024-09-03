@@ -9,17 +9,16 @@ class PlayerScoreUpdate {
 }
 
 class PlayerProvider extends ChangeNotifier {
-  List<Player> players = [
-    Player(name: 'Player 1'),
-    Player(name: 'Player 2'),
-    Player(name: 'Player 3'),
-    Player(name: 'Player 4'),
-  ];
+  List<Player> players = [];
 
   int game = 0;
   int get getGame => game;
   int scoreThreshold = 1000;
   bool gameEnded = true;
+  late Player winner =
+      Player(name: "No Winner", score: 0); // Example default Player
+
+  Player get getWinner => winner;
   List<Player> get getPlayers => players;
   List<PlayerScoreUpdate> log = [];
 
@@ -68,6 +67,7 @@ class PlayerProvider extends ChangeNotifier {
     for (var player in players) {
       if (player.score >= scoreThreshold) {
         player.wins++;
+        winner = player;
         gameEnded = true;
       }
     }

@@ -23,7 +23,7 @@ class _StartGameState extends State<StartGame> {
         Expanded(
           flex: 1,
           child: Container(
-            color: Colors.red,
+            color: const Color.fromARGB(255, 255, 255, 255),
             child: const History(),
           ),
         ),
@@ -33,25 +33,19 @@ class _StartGameState extends State<StartGame> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (!gameEnded) ...[
-                Expanded(
-                  child: Container(
-                    color: Colors.blue,
-                    child: const Leaderboard(),
-                  ),
+                const Expanded(
+                  child: Leaderboard(),
                 ),
-                Expanded(
-                  child: Container(
-                    color: Colors.green,
-                    child: const RenderPlayerCards(),
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: RenderPlayerCards(),
                   ),
                 ),
               ],
               if (gameEnded)
-                Expanded(
-                  child: Container(
-                    color: const Color.fromARGB(255, 243, 33, 205),
-                    child: const NewGame(),
-                  ),
+                const Expanded(
+                  child: NewGame(),
                 ),
             ],
           ),

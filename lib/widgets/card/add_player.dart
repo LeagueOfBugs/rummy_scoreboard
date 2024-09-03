@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/player_provider.dart';
-import 'package:flutter_application_1/widgets/card/game_card.dart';
 import 'package:provider/provider.dart';
 
 class AddPlayer extends StatefulWidget {
@@ -43,39 +42,46 @@ class _AddPlayerState extends State<AddPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return GameCard(
-      gameCardChildren: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ..._controllers.map((controller) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: TextField(
-                  controller: controller,
-                  decoration:
-                      const InputDecoration(hintText: 'Enter player name'),
-                ),
-              );
-            }),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return Center(
+      child: SizedBox(
+        width: 400,
+        child: Card(
+          elevation: 10,
+          color: const Color.fromARGB(255, 255, 255, 255),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               children: [
-                ElevatedButton(
-                  onPressed: addPlayerInput,
-                  child: const Text('Add Player'),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: startGame,
-                  child: const Text('Start Game'),
+                ..._controllers.map((controller) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: TextField(
+                      controller: controller,
+                      decoration:
+                          const InputDecoration(hintText: 'Enter player name'),
+                    ),
+                  );
+                }),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: addPlayerInput,
+                      child: const Text('Add Player'),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: startGame,
+                      child: const Text('Start Game'),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
